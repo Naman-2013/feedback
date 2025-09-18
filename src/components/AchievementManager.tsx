@@ -12,7 +12,6 @@ const SingleAchievement = ({ achievement }: { achievement: Achievement }) => {
   // This useEffect handles the auto-removal by updating the state array.
   // This is the correct "React way" to remove an element.
   useEffect(() => {
-    // Total time includes the animation duration.
     const totalDuration = (duration + 0.5) * 1000; // duration + slideOut time
     const timer = setTimeout(() => {
       // We update the state, and React handles removing the element from the DOM.

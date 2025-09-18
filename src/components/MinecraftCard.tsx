@@ -1,38 +1,56 @@
-import Link from 'next/link';
-import styles from './MinecraftCard.module.css';
+    'use client'; // Convert to a Client Component for hooks and events
 
-interface MinecraftCardProps {
-  id: string;
-  name: string;
-  icon: string;
-  isSubmitted?: boolean; // New prop
-}
+    import { useRouter } from 'next/navigation';
+    import styles from './MinecraftCard.module.css';
 
-export default function MinecraftCard({ id, name, icon, isSubmitted }: MinecraftCardProps) {
-  const cardContent = (
-    <>
-      <span className={styles.icon}>{icon}</span>
-      <h2 className={styles.name}>{name}</h2>
-      {isSubmitted && (
-        <div className={styles.submittedOverlay}>
-          <span className={styles.submittedText}>SUBMITTED</span>
-        </div>
-      )}
-    </>
-  );
+    interface MinecraftCardProps {
+      id: string;
+      name: string;
+      icon: string;
+      isSubmitted?: boolean;
+    }
 
-  // If submitted, render a non-clickable div. Otherwise, render a Link.
-  if (isSubmitted) {
-    return (
-      <div className={`${styles.card} ${styles.submitted}`} style={{ position: 'relative' }}>
-        {cardContent}
-      </div>
-    );
-  }
+    export default function MinecraftCard({ id, name, icon, isSubmitted }: MinecraftCardProps) {
+      const router = useRouter();
 
-  return (
-    <Link href={`/feedback/${id}`} className={styles.card} style={{ position: 'relative' }}>
-      {cardContent}
-    </Link>
-  );
-}
+      const handleClick = () => {
+        // Do nothing if the feedback has already been submitted
+        if (isSubmitted) {
+          return;
+        }
+
+        // Create a new audio object and play the sound
+        const productSound = new Audio('/sounds/click.mp3');
+        productSound.play();
+
+        // Navigate to the feedback page after a short delay for the sound
+        setTimeout(() => {
+          router.push(`/feedback/${id}`);
+        }, 300); // 300ms delay
+      };
+
+      const cardContent = (
+        <>
+          <span className={styles.icon}>{icon}</span>
+          <h2 className={styles.name}>{name}</h2>
+          {isSubmitted && (
+            <div className={styles.submittedOverlay}>
+              <span className={styles.submittedText}>SUBMITTED</span>
+            </div>
+          )}
+        </>
+      );
+
+      // We now use a <button> element to handle the onClick event
+      return (
+        <button
+          onClick={handleClick}
+          className={`${styles.card} ${isSubmitted ? styles.submitted : ''}`}
+          style={{ position: 'relative' }}
+          disabled={isSubmitted} // This prevents clicking on a submitted card
+        >
+          {cardContent}
+        </button>
+      );
+    }
+    
