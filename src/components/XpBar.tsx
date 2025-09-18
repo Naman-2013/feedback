@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { useUser } from '@/context/UserContext';
+import { useRouter } from 'next/navigation'; // 1. Import the router
 import styles from './XpBar.module.css';
 
-const TOTAL_PRODUCTS = 28; // 4 labs * 7 products
-const TOTAL_SEGMENTS = 20; // The number of "chunks" in the XP bar
+const TOTAL_PRODUCTS = 28;
+const TOTAL_SEGMENTS = 20;
 
 export default function XpBar() {
   const { user } = useUser();
+  const router = useRouter(); // 2. Initialize the router
   const [feedbackCount, setFeedbackCount] = useState(0);
 
   useEffect(() => {
@@ -16,7 +18,13 @@ export default function XpBar() {
       const updateCount = () => {
         const userStorageKey = `submittedFeedback_${user.email}`;
         const storedSubmissions = JSON.parse(localStorage.getItem(userStorageKey) || '[]');
-        setFeedbackCount(storedSubmissions.length);
+        const count = storedSubmissions.length;
+        setFeedbackCount(count);
+
+        // 3. Check for completion and redirect
+        if (count >= TOTAL_PRODUCTS) {
+          router.push('/finish');
+        }
       };
 
       updateCount();
@@ -25,10 +33,11 @@ export default function XpBar() {
         window.removeEventListener('feedbackSubmitted', updateCount);
       };
     }
-  }, [user]);
+  }, [user, router]); // 4. Add router to dependency array
 
   const filledSegments = Math.round((feedbackCount / TOTAL_PRODUCTS) * TOTAL_SEGMENTS);
 
+  // We still want to show the bar on other pages, so we don't return null if !user
   if (!user) {
     return null;
   }
@@ -46,11 +55,9 @@ export default function XpBar() {
       <div className={styles.progressText}>
         Progress: {feedbackCount} / {TOTAL_PRODUCTS}
       </div>
-
-      {/* This text will only appear if the feedback is NOT complete */}
       {feedbackCount < TOTAL_PRODUCTS && (
         <p className={styles.magicText}>
-          Complete all the feedbacks to see the magic ! ! !
+          Complete all the feedbacks to see the magic !!!
         </p>
       )}
     </div>

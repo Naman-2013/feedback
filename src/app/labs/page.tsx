@@ -1,18 +1,26 @@
-import Link from 'next/link';
-import fs from 'fs/promises';
-import path from 'path';
+'use client';
+
+import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 
-// This is a Server Component, so we can read files directly
-async function getLabs() {
-  const dbPath = path.join(process.cwd(), 'db.json');
-  const fileData = await fs.readFile(dbPath, 'utf-8');
-  const data = JSON.parse(fileData);
-  return data.labs;
-}
+// --- THIS DATA HAS BEEN UPDATED ---
+const labs = [
+  { labId: 'a', labName: 'LAB 308-A' },
+  { labId: 'c', labName: 'LAB 308-C' },
+  { labId: 'd', labName: 'LAB 308-D' },
+];
 
-export default async function LabsPage() {
-  const labs = await getLabs();
+export default function LabsPage() {
+  const router = useRouter();
+
+  const handleLabClick = (labId: string) => {
+    const clickSound = new Audio('/sounds/labs.mp3');
+    clickSound.play();
+
+    setTimeout(() => {
+      router.push(`/labs/${labId}`);
+    }, 200);
+  };
 
   return (
     <main>
@@ -22,12 +30,17 @@ export default async function LabsPage() {
       </div>
 
       <div className={styles.labListContainer}>
-        {labs.map((lab: { labId: string; labName: string }) => (
-          <Link key={lab.labId} href={`/labs/${lab.labId}`} className={styles.labLink}>
+        {labs.map((lab) => (
+          <button
+            key={lab.labId}
+            onClick={() => handleLabClick(lab.labId)}
+            className={styles.labLink}
+          >
             {lab.labName}
-          </Link>
+          </button>
         ))}
       </div>
     </main>
   );
 }
+
