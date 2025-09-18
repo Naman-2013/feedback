@@ -38,3 +38,10 @@
   color: white;
   text-shadow: 2px 2px 0 #000;
 }
+.magicText {
+  margin-top: 8px; /* Adds space between the progress text and this new text */
+  color: #FFD700; /* Golden color to make it feel special */
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 0 #000;
+  text-align: center;
+}
