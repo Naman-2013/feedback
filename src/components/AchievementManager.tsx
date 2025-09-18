@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useContext, useEffect } from 'react';
+import Image from 'next/image';
 import { AchievementsContext, AchievementDispatchContext, Achievement } from '@/context/AchievementContext';
 import styles from './AchievementManager.module.css';
 
@@ -30,7 +31,12 @@ const SingleAchievement = ({ achievement }: { achievement: Achievement }) => {
   return (
     <div className={styles.achievement} style={animationStyle}>
       <div className={styles.icon}>
-        <img src={imageUrl || '/images/default-icon.png'} alt="" />
+        <Image 
+          src={imageUrl || '/images/default-icon.png'} 
+          alt="" 
+          width={48} 
+          height={48}
+        />
       </div>
       <div className={styles.text}>
         <div className={styles.title}>{title}</div>

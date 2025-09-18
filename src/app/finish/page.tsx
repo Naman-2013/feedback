@@ -1,7 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useCompletion } from '@/context/CompletionContext';
+import { useUser } from '@/context/UserContext';
 
 // --- (The SvgChest, LootDrop, and rewards components/data are the same as before) ---
 
@@ -94,8 +97,12 @@ const rewards: Reward[] = [
 ];
 
 export default function FinishPage() {
+  const { isCompleted: userCompleted } = useCompletion();
+  const { user, logout } = useUser();
+  const router = useRouter();
   const [isCompleted, setIsCompleted] = useState(false);
   const [revealedReward, setRevealedReward] = useState<Reward | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   // This useEffect hook will play the sound when the state changes
   useEffect(() => {
@@ -109,6 +116,32 @@ export default function FinishPage() {
   const handleCompleteClick = () => {
     setIsCompleted(true);
   };
+
+  // Check completion status and handle redirects
+  useEffect(() => {
+    if (!user) {
+      // No user, redirect to home
+      window.location.href = '/';
+      return;
+    }
+
+    // Check multiple sources for completion state
+    const storedCompletion = localStorage.getItem('completion_state');
+    const userCompletion = localStorage.getItem(`completion_${user.email}`);
+    const userFeedbackKey = `submittedFeedback_${user.email}`;
+    const submittedFeedback = JSON.parse(localStorage.getItem(userFeedbackKey) || '[]');
+    const feedbackCount = submittedFeedback.length;
+    
+    // Check if user has completed all 25 feedbacks
+    const hasCompletedFeedback = feedbackCount >= 25;
+    const isActuallyCompleted = userCompleted || storedCompletion === 'true' || userCompletion === 'true' || hasCompletedFeedback;
+    
+    if (!isActuallyCompleted) {
+      window.location.href = '/labs';
+    } else {
+      setIsLoading(false);
+    }
+  }, [userCompleted, user]);
 
   const handleChestClick = () => {
     if (revealedReward) return;
@@ -152,8 +185,53 @@ export default function FinishPage() {
     border: '1px solid rgba(255, 255, 255, 0.1)'
   };
 
+  if (isLoading) {
+    return (
+      <main style={pageStyle}>
+        <div style={{ textAlign: 'center', color: 'white', fontFamily: 'var(--font-minecraft)' }}>
+          <p>Loading...</p>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main style={pageStyle}>
+      {/* Navigation buttons */}
+      {user && (
+        <div style={{ position: 'absolute', top: '1rem', right: '1rem', display: 'flex', gap: '0.5rem' }}>
+          <button 
+            onClick={() => router.push('/leaderboard')}
+            style={{
+              padding: '0.5rem 1rem',
+              backgroundColor: '#FFD700',
+              color: '#000',
+              border: '2px outset #a0a0a0',
+              fontSize: '0.9rem',
+              fontFamily: 'var(--font-minecraft)',
+              cursor: 'pointer',
+              fontWeight: 'bold'
+            }}
+          >
+            🏆 Leaderboard
+          </button>
+          <button 
+            onClick={logout}
+            style={{
+              padding: '0.5rem 1rem',
+              backgroundColor: '#8B0000',
+              color: 'white',
+              border: '2px outset #a0a0a0',
+              fontSize: '0.9rem',
+              fontFamily: 'var(--font-minecraft)',
+              cursor: 'pointer'
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      )}
+
       {isCompleted ? (
         // --- REWARD STATE ---
         <>
@@ -173,7 +251,7 @@ export default function FinishPage() {
         // --- INITIAL STATE ---
         <>
           <h1 style={{ fontSize: '2.5rem', textShadow: '3px 3px 0 #000' }}>
-            You've reviewed all the products!
+            You&apos;ve reviewed all the products!
           </h1>
           <p style={subtitleStyle}>
             Click the button below to finalize your submission and claim your reward.

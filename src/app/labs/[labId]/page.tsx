@@ -64,7 +64,7 @@ export default function LabProductsPage() {
     const { user } = useUser();
     const labId = params.labId as string;
 
-    const [lab, setLab] = useState<any>(null);
+    const [lab, setLab] = useState<{ labName: string; products: Array<{ id: string; name: string; icon: string }> } | null>(null);
     const [submittedIds, setSubmittedIds] = useState<string[]>([]);
 
     useEffect(() => {
@@ -74,7 +74,7 @@ export default function LabProductsPage() {
             setSubmittedIds(storedSubmissions);
         }
         const data = getLabData(labId);
-        setLab(data);
+        setLab(data || null);
     }, [labId, user]);
 
     const backButtonStyle: React.CSSProperties = {
