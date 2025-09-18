@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import { UserProvider } from '@/context/UserContext';
 import { AchievementProvider } from '@/context/AchievementContext';
+import { CompletionProvider } from '@/context/CompletionContext';
+import { AdminProvider } from '@/context/AdminContext';
 import AchievementManager from '@/components/AchievementManager';
 import XpBar from '@/components/XpBar';
+import CompletionChecker from '@/components/CompletionChecker';
 import "./globals.css";
 
 // This path must be correct and relative to the 'app' directory
@@ -26,13 +29,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${minecraftFont.variable} font-minecraft`}>
       <body>
-        <AchievementProvider>
-          <UserProvider>
-            {children}
-            <XpBar /> 
-          </UserProvider>
-          <AchievementManager />
-        </AchievementProvider>
+        <AdminProvider>
+          <AchievementProvider>
+            <UserProvider>
+            <CompletionProvider>
+              {children}
+              <XpBar />
+              <CompletionChecker />
+            </CompletionProvider>
+            </UserProvider>
+            <AchievementManager />
+          </AchievementProvider>
+        </AdminProvider>
       </body>
     </html>
   );

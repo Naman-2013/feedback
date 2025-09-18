@@ -2,15 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import { useUser } from '@/context/UserContext';
-import { useRouter } from 'next/navigation'; // 1. Import the router
+import { useCompletion } from '@/context/CompletionContext';
+import { useRouter } from 'next/navigation';
 import styles from './XpBar.module.css';
 
-const TOTAL_PRODUCTS = 28;
+const TOTAL_PRODUCTS = 25;
 const TOTAL_SEGMENTS = 20;
 
 export default function XpBar() {
   const { user } = useUser();
-  const router = useRouter(); // 2. Initialize the router
+  const { isCompleted } = useCompletion();
+  const router = useRouter();
   const [feedbackCount, setFeedbackCount] = useState(0);
 
   useEffect(() => {
@@ -21,9 +23,11 @@ export default function XpBar() {
         const count = storedSubmissions.length;
         setFeedbackCount(count);
 
-        // 3. Check for completion and redirect
+        // Check for completion and redirect
         if (count >= TOTAL_PRODUCTS) {
-          router.push('/finish');
+          setTimeout(() => {
+            router.push('/finish');
+          }, 500);
         }
       };
 
@@ -33,7 +37,7 @@ export default function XpBar() {
         window.removeEventListener('feedbackSubmitted', updateCount);
       };
     }
-  }, [user, router]); // 4. Add router to dependency array
+  }, [user, router, isCompleted]);
 
   const filledSegments = Math.round((feedbackCount / TOTAL_PRODUCTS) * TOTAL_SEGMENTS);
 

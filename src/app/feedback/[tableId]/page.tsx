@@ -38,8 +38,8 @@ export default function FeedbackPage() {
       alert("User information not found. Please return to the homepage.");
       return;
     }
-    if (rating === 0 || comment.trim() === '') {
-      alert('A rating and a comment are both required!');
+    if (rating === 0) {
+      alert('A rating is required!');
       return;
     }
 
@@ -68,7 +68,17 @@ export default function FeedbackPage() {
       if (!submitted.includes(tableId)) {
         submitted.push(tableId);
         localStorage.setItem(userStorageKey, JSON.stringify(submitted));
-        window.dispatchEvent(new CustomEvent('feedbackSubmitted'));
+        
+        // Check if this completes all feedback
+        if (submitted.length >= 25) {
+          localStorage.setItem(`completion_${user.email}`, 'true');
+          localStorage.setItem('completion_state', 'true');
+        }
+        
+        // Dispatch event to update XP bar and trigger redirect
+        window.dispatchEvent(new CustomEvent('feedbackSubmitted', { 
+          detail: { completed: submitted.length >= 25 } 
+        }));
       }
       
       // Play the achievement sound effect
@@ -81,11 +91,21 @@ export default function FeedbackPage() {
         imageUrl: '/images/image.png'
       });
       
-      // Redirect back to the correct lab page
-      setTimeout(() => {
-        const labId = tableId.charAt(0); 
-        router.push(`/labs/${labId}`);   
-      }, 1500);
+      // Check if all feedback is completed
+      const userStorageKey2 = `submittedFeedback_${user.email}`;
+      const submitted2 = JSON.parse(localStorage.getItem(userStorageKey2) || '[]');
+      
+      if (submitted2.length >= 25) {
+        setTimeout(() => {
+          router.push('/finish');
+        }, 1000);
+      } else {
+        // Otherwise, redirect back to lab page
+        setTimeout(() => {
+          const labId = tableId.charAt(0); 
+          router.push(`/labs/${labId}`);   
+        }, 500);
+      }
 
     } catch (error) {
       console.error("Submission Error:", error);
@@ -117,7 +137,7 @@ export default function FeedbackPage() {
             <label style={{ display: 'block', marginBottom: '1rem' }}>Your Rating:</label>
             <HeartRating rating={rating} setRating={setRating} />
           </div>
-          <textarea placeholder="Your thoughts here..." value={comment} onChange={(e) => setComment(e.target.value)} style={inputStyle} rows={4} />
+          <textarea placeholder="Your thoughts here... (optional)" value={comment} onChange={(e) => setComment(e.target.value)} style={inputStyle} rows={4} />
           <button type="submit" disabled={isSubmitting} style={buttonStyle}>
             {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
           </button>
