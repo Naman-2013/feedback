@@ -1,0 +1,503 @@
+{
+  "labs": [
+    {
+      "labId": "a",
+      "labName": "Lab A - Robotics & AI",
+      "products": [
+        {
+          "id": "a1",
+          "name": "AI Art Generator",
+          "icon": "🎨"
+        },
+        {
+          "id": "a2",
+          "name": "Self-Driving Rover",
+          "icon": "🚗"
+        },
+        {
+          "id": "a3",
+          "name": "Chess Bot",
+          "icon": "♟️"
+        },
+        {
+          "id": "a4",
+          "name": "Automated Gardener",
+          "icon": "🌱"
+        },
+        {
+          "id": "a5",
+          "name": "Voice Assistant",
+          "icon": "💬"
+        },
+        {
+          "id": "a6",
+          "name": "Robotic Arm",
+          "icon": "🦾"
+        },
+        {
+          "id": "a7",
+          "name": "Pathfinding AI",
+          "icon": "🗺️"
+        }
+      ]
+    },
+    {
+      "labId": "b",
+      "labName": "Lab B - VR/AR Experiences",
+      "products": [
+        {
+          "id": "b1",
+          "name": "VR Space Explorer",
+          "icon": "🚀"
+        },
+        {
+          "id": "b2",
+          "name": "AR Furniture Placer",
+          "icon": "🛋️"
+        },
+        {
+          "id": "b3",
+          "name": "Virtual Museum Tour",
+          "icon": "🏛️"
+        },
+        {
+          "id": "b4",
+          "name": "VR Fitness Game",
+          "icon": "💪"
+        },
+        {
+          "id": "b5",
+          "name": "Augmented Reality Art",
+          "icon": "🖼️"
+        },
+        {
+          "id": "b6",
+          "name": "Shared VR Workspace",
+          "icon": "🤝"
+        },
+        {
+          "id": "b7",
+          "name": "VR Escape Room",
+          "icon": "🧩"
+        }
+      ]
+    },
+    {
+      "labId": "c",
+      "labName": "Lab C - IoT & Smart Devices",
+      "products": [
+        {
+          "id": "c1",
+          "name": "Smart Home Hub",
+          "icon": "💡"
+        },
+        {
+          "id": "c2",
+          "name": "Weather Station",
+          "icon": "🌦️"
+        },
+        {
+          "id": "c3",
+          "name": "Pet Feeder",
+          "icon": "🐾"
+        },
+        {
+          "id": "c4",
+          "name": "Smart Security Cam",
+          "icon": "📹"
+        },
+        {
+          "id": "c5",
+          "name": "Health Monitor",
+          "icon": "❤️‍🩹"
+        },
+        {
+          "id": "c6",
+          "name": "Smart Mirror",
+          "icon": "🪞"
+        },
+        {
+          "id": "c7",
+          "name": "Connected Bike Lock",
+          "icon": "🚲"
+        }
+      ]
+    },
+    {
+      "labId": "d",
+      "labName": "Lab D - Web & Blockchain",
+      "products": [
+        {
+          "id": "d1",
+          "name": "Decentralized Voting",
+          "icon": "🔗"
+        },
+        {
+          "id": "d2",
+          "name": "NFT Art Marketplace",
+          "icon": "💎"
+        },
+        {
+          "id": "d3",
+          "name": "Real-time Chat App",
+          "icon": "💬"
+        },
+        {
+          "id": "d4",
+          "name": "Supply Chain Tracker",
+          "icon": "⛓️"
+        },
+        {
+          "id": "d5",
+          "name": "Live Polling System",
+          "icon": "📊"
+        },
+        {
+          "id": "d6",
+          "name": "Encrypted File Share",
+          "icon": "📁"
+        },
+        {
+          "id": "d7",
+          "name": "Web Game Engine",
+          "icon": "🎮"
+        }
+      ]
+    }
+  ],
+  "feedback": [
+    {
+      "studentName": "ffwfd",
+      "studentEmail": "nwnw@gmai.com",
+      "studentDepartment": "dfwfd",
+      "rating": 3,
+      "comment": "asca",
+      "tableId": "a1",
+      "timestamp": "2025-09-18T07:39:11.760Z"
+    },
+    {
+      "studentName": "aiaia",
+      "studentEmail": "ihaihaih@gmail.com",
+      "studentDepartment": "aaaa",
+      "rating": 3,
+      "comment": "bbibi",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T07:48:09.820Z"
+    },
+    {
+      "studentName": "sfsfsf",
+      "studentEmail": "gegeg@gmail.com",
+      "studentDepartment": "dfff",
+      "rating": 3,
+      "comment": "ssv",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T07:48:44.024Z"
+    },
+    {
+      "studentName": "dcc",
+      "studentEmail": "wwd@gmail.com",
+      "studentDepartment": "wcc",
+      "rating": 4,
+      "comment": "s s s s",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T09:01:58.614Z"
+    },
+    {
+      "studentName": "wsws",
+      "studentEmail": "wxwx@gmail.com",
+      "studentDepartment": "xwxw",
+      "rating": 4,
+      "comment": "edddd",
+      "tableId": "a4",
+      "timestamp": "2025-09-18T09:03:44.442Z"
+    },
+    {
+      "studentName": "wsws",
+      "studentEmail": "wxwx@gmail.com",
+      "studentDepartment": "xwxw",
+      "rating": 3,
+      "comment": "d d d ",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T09:04:07.455Z"
+    },
+    {
+      "studentName": "ccw",
+      "studentEmail": "wdwd@xw.com",
+      "studentDepartment": "wdwd",
+      "rating": 4,
+      "comment": "45g54f4f4f",
+      "tableId": "a2",
+      "timestamp": "2025-09-18T09:11:00.555Z"
+    },
+    {
+      "studentName": "wdwdw",
+      "studentEmail": "2wd2d2@dw.com",
+      "studentDepartment": "wdwd",
+      "rating": 4,
+      "comment": "wdwdwd",
+      "tableId": "a4",
+      "timestamp": "2025-09-18T09:15:31.776Z"
+    },
+    {
+      "studentName": "wdwdw",
+      "studentEmail": "2wd2d2@dw.com",
+      "studentDepartment": "wdwd",
+      "rating": 4,
+      "comment": "efefefe",
+      "tableId": "a4",
+      "timestamp": "2025-09-18T09:18:46.771Z"
+    },
+    {
+      "studentName": "wdwdw",
+      "studentEmail": "2wd2d2@dw.com",
+      "studentDepartment": "wdwd",
+      "rating": 4,
+      "comment": "wdwdwd",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T09:20:35.759Z"
+    },
+    {
+      "studentName": "axx",
+      "studentEmail": "wdwd@wf",
+      "studentDepartment": "wwdw",
+      "rating": 1,
+      "comment": "fwfwf",
+      "tableId": "b3",
+      "timestamp": "2025-09-18T09:21:21.482Z"
+    },
+    {
+      "studentName": "333",
+      "studentEmail": "3e3e@f.com",
+      "studentDepartment": "3e3e",
+      "rating": 3,
+      "comment": "rrr",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T09:28:29.221Z"
+    },
+    {
+      "studentName": "dwwdw",
+      "studentEmail": "wdwd@wdwd.com",
+      "studentDepartment": "wdwd",
+      "rating": 3,
+      "comment": "tgrgrgrg",
+      "tableId": "a4",
+      "timestamp": "2025-09-18T09:29:48.127Z"
+    },
+    {
+      "studentName": "dwwdw",
+      "studentEmail": "wdwd@wdwd.com",
+      "studentDepartment": "wdwd",
+      "rating": 3,
+      "comment": "trgrgrg",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T09:30:48.187Z"
+    },
+    {
+      "studentName": "sss",
+      "studentEmail": "ee@ee.com",
+      "studentDepartment": "eexex",
+      "rating": 3,
+      "comment": "",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T09:55:09.630Z"
+    },
+    {
+      "studentName": "sss",
+      "studentEmail": "ee@ee.com",
+      "studentDepartment": "eexex",
+      "rating": 3,
+      "comment": "wwwqs",
+      "tableId": "a4",
+      "timestamp": "2025-09-18T09:55:19.301Z"
+    },
+    {
+      "studentName": "sss",
+      "studentEmail": "ee@ee.com",
+      "studentDepartment": "eexex",
+      "rating": 4,
+      "comment": "",
+      "tableId": "a4",
+      "timestamp": "2025-09-18T09:55:24.157Z"
+    },
+    {
+      "studentName": "ssd",
+      "studentEmail": "dwdwd@wdwd.com",
+      "studentDepartment": "wdwd",
+      "rating": 4,
+      "comment": "wdww",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T10:13:52.671Z"
+    },
+    {
+      "studentName": "WDDWD",
+      "studentEmail": "WDWDW@DWDW.COM",
+      "studentDepartment": "WDWD",
+      "rating": 3,
+      "comment": "AQDQS",
+      "tableId": "b3",
+      "timestamp": "2025-09-18T10:33:34.178Z"
+    },
+    {
+      "studentName": "QDWQDQ",
+      "studentEmail": "QWDWD@WDW.COM",
+      "studentDepartment": "WQDWD",
+      "rating": 3,
+      "comment": "WWDWDWD",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T10:35:27.392Z"
+    },
+    {
+      "studentName": "QDWQDQ",
+      "studentEmail": "QWDWD@WDW.COM",
+      "studentDepartment": "WQDWD",
+      "rating": 3,
+      "comment": "WDWDWDW",
+      "tableId": "a4",
+      "timestamp": "2025-09-18T10:35:36.499Z"
+    },
+    {
+      "studentName": "wdwd",
+      "studentEmail": "qdd@dwdw.com",
+      "studentDepartment": "wdwdwd",
+      "rating": 3,
+      "comment": "wdwdwdwd",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T10:48:12.309Z"
+    },
+    {
+      "studentName": "qsqsdq",
+      "studentEmail": "qqe@wdwdw.com",
+      "studentDepartment": "qdqsq",
+      "rating": 2,
+      "comment": "qdqdqd",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T10:53:31.590Z"
+    },
+    {
+      "studentName": "wdwdwd",
+      "studentEmail": "wdwdw@wfwfwf.com",
+      "studentDepartment": "wdwd",
+      "rating": 3,
+      "comment": "wdwd",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T10:54:43.256Z"
+    },
+    {
+      "studentName": "wdwdwd",
+      "studentEmail": "wdwdw@wfwfwf.com",
+      "studentDepartment": "wdwd",
+      "rating": 3,
+      "comment": "wdwdw",
+      "tableId": "a4",
+      "timestamp": "2025-09-18T10:54:49.848Z"
+    },
+    {
+      "studentName": "wdwdwd",
+      "studentEmail": "wdwdw@fwfw.com",
+      "studentDepartment": "wdwwd",
+      "rating": 3,
+      "comment": "wdfwfdwdf",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T10:57:21.495Z"
+    },
+    {
+      "studentName": "wdwdw",
+      "studentEmail": "dqwdwqd@wdwd.com",
+      "studentDepartment": "wdwdwd",
+      "rating": 3,
+      "comment": "sccsc",
+      "tableId": "a2",
+      "timestamp": "2025-09-18T11:09:45.710Z"
+    },
+    {
+      "studentName": "wdwd",
+      "studentEmail": "wwdf@wdwd.com",
+      "studentDepartment": "wdwd",
+      "rating": 4,
+      "comment": "wfwfwf",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T11:11:47.195Z"
+    },
+    {
+      "studentName": "axax",
+      "studentEmail": "axqax@dqs.com",
+      "studentDepartment": "axax",
+      "rating": 3,
+      "comment": "qsqsqs",
+      "tableId": "b4",
+      "timestamp": "2025-09-18T11:13:49.686Z"
+    },
+    {
+      "studentName": "dwsdd",
+      "studentEmail": "wdwd@wdwd.com",
+      "studentDepartment": "dwd",
+      "rating": 4,
+      "comment": "dddd",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T11:15:57.705Z"
+    },
+    {
+      "studentName": "qqsd",
+      "studentEmail": "wdqwd@wdw.com",
+      "studentDepartment": "wqdqd",
+      "rating": 3,
+      "comment": "wdwdwd",
+      "tableId": "a3",
+      "timestamp": "2025-09-18T11:19:07.070Z"
+    },
+    {
+      "studentName": "qqsd",
+      "studentEmail": "wdqwd@wdw.com",
+      "studentDepartment": "wqdqd",
+      "rating": 3,
+      "comment": "qdwwdw",
+      "tableId": "a4",
+      "timestamp": "2025-09-18T11:19:14.032Z"
+    },
+    {
+      "studentName": "qqsd",
+      "studentEmail": "wdqwd@wdw.com",
+      "studentDepartment": "wqdqd",
+      "rating": 4,
+      "comment": "wdwdwd",
+      "tableId": "a5",
+      "timestamp": "2025-09-18T11:19:18.602Z"
+    },
+    {
+      "studentName": "qqsd",
+      "studentEmail": "wdqwd@wdw.com",
+      "studentDepartment": "wqdqd",
+      "rating": 2,
+      "comment": "wdwdwdw",
+      "tableId": "a7",
+      "timestamp": "2025-09-18T11:19:23.585Z"
+    },
+    {
+      "studentName": "qqsd",
+      "studentEmail": "wdqwd@wdw.com",
+      "studentDepartment": "wqdqd",
+      "rating": 3,
+      "comment": "wdwdwd",
+      "tableId": "a2",
+      "timestamp": "2025-09-18T11:19:28.789Z"
+    },
+    {
+      "studentName": "qqsd",
+      "studentEmail": "wdqwd@wdw.com",
+      "studentDepartment": "wqdqd",
+      "rating": 4,
+      "comment": "wdwdwdw",
+      "tableId": "a1",
+      "timestamp": "2025-09-18T11:19:33.734Z"
+    },
+    {
+      "studentName": "qqsd",
+      "studentEmail": "wdqwd@wdw.com",
+      "studentDepartment": "wqdqd",
+      "rating": 3,
+      "comment": "qdwdwd",
+      "tableId": "a6",
+      "timestamp": "2025-09-18T11:19:41.332Z"
+    }
+  ]
+}
