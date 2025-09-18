@@ -3,26 +3,23 @@
 import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 
-// Since this is now a Client Component, we hardcode the lab data.
+// --- THIS DATA HAS BEEN UPDATED ---
 const labs = [
-  { labId: 'a', labName: 'Lab A - Robotics & AI' },
-  { labId: 'b', labName: 'Lab B - VR/AR Experiences' },
-  { labId: 'c', labName: 'Lab C - IoT & Smart Devices' },
-  { labId: 'd', labName: 'Lab D - Web & Blockchain' },
+  { labId: 'a', labName: 'LAB 308-A' },
+  { labId: 'c', labName: 'LAB 308-C' },
+  { labId: 'd', labName: 'LAB 308-D' },
 ];
 
 export default function LabsPage() {
   const router = useRouter();
 
   const handleLabClick = (labId: string) => {
-    // Create a new audio object and play the sound
     const clickSound = new Audio('/sounds/labs.mp3');
     clickSound.play();
 
-    // Navigate to the lab page after a short delay for the sound to start
     setTimeout(() => {
       router.push(`/labs/${labId}`);
-    }, 200); // 200ms delay
+    }, 200);
   };
 
   return (
@@ -33,7 +30,6 @@ export default function LabsPage() {
       </div>
 
       <div className={styles.labListContainer}>
-        {/* The Link component is replaced with a button to handle the click event */}
         {labs.map((lab) => (
           <button
             key={lab.labId}

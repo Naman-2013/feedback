@@ -17,12 +17,14 @@ export default function FeedbackPage() {
   const [comment, setComment] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // This ref safely handles the setIsSubmitting call
   const isMounted = useRef(true);
   useEffect(() => {
     isMounted.current = true;
     return () => { isMounted.current = false; };
   }, []);
 
+  // This effect handles redirecting if user is not logged in
   useEffect(() => {
     if (!user) {
       router.push('/');
@@ -62,14 +64,14 @@ export default function FeedbackPage() {
       const userStorageKey = `submittedFeedback_${user.email}`;
       const submitted = JSON.parse(localStorage.getItem(userStorageKey) || '[]');
       
+      // Only update localStorage and dispatch the event for a new submission
       if (!submitted.includes(tableId)) {
-          submitted.push(tableId);
-          localStorage.setItem(userStorageKey, JSON.stringify(submitted));
-          window.dispatchEvent(new CustomEvent('feedbackSubmitted'));
+        submitted.push(tableId);
+        localStorage.setItem(userStorageKey, JSON.stringify(submitted));
+        window.dispatchEvent(new CustomEvent('feedbackSubmitted'));
       }
       
-      // --- THIS IS THE NEW LOGIC ---
-      // Create and play the sound effect before showing the achievement
+      // Play the achievement sound effect
       const achievementSound = new Audio('/sounds/achievement.mp3');
       achievementSound.play();
 
@@ -79,6 +81,7 @@ export default function FeedbackPage() {
         imageUrl: '/images/image.png'
       });
       
+      // Redirect back to the correct lab page
       setTimeout(() => {
         const labId = tableId.charAt(0); 
         router.push(`/labs/${labId}`);   
