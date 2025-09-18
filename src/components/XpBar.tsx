@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { useUser } from '@/context/UserContext';
 import styles from './XpBar.module.css';
 
-const TOTAL_PRODUCTS = 28;
-const TOTAL_SEGMENTS = 20;
+const TOTAL_PRODUCTS = 28; // 4 labs * 7 products
+const TOTAL_SEGMENTS = 20; // The number of "chunks" in the XP bar
 
 export default function XpBar() {
   const { user } = useUser();
@@ -19,14 +19,8 @@ export default function XpBar() {
         setFeedbackCount(storedSubmissions.length);
       };
 
-      // Update on initial load
       updateCount();
-
-      // --- THIS IS THE FIX ---
-      // Listen for our custom event to force an update
       window.addEventListener('feedbackSubmitted', updateCount);
-
-      // Clean up the event listener
       return () => {
         window.removeEventListener('feedbackSubmitted', updateCount);
       };
@@ -52,6 +46,13 @@ export default function XpBar() {
       <div className={styles.progressText}>
         Progress: {feedbackCount} / {TOTAL_PRODUCTS}
       </div>
+
+      {/* This text will only appear if the feedback is NOT complete */}
+      {feedbackCount < TOTAL_PRODUCTS && (
+        <p className={styles.magicText}>
+          Complete all the feedbacks to see the magic ! ! !
+        </p>
+      )}
     </div>
   );
 }
