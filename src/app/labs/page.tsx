@@ -1,14 +1,13 @@
 import Link from 'next/link';
-import fs from 'fs/promises';
-import path from 'path';
+import connectDB from '../../../lib/mongodb';
+import Lab from '../../../models/Lab';
 import styles from './page.module.css';
 
-// This is a Server Component, so we can read files directly
+// This is a Server Component, so we can connect to MongoDB directly
 async function getLabs() {
-  const dbPath = path.join(process.cwd(), 'db.json');
-  const fileData = await fs.readFile(dbPath, 'utf-8');
-  const data = JSON.parse(fileData);
-  return data.labs;
+  await connectDB();
+  const labs = await Lab.find({});
+  return labs;
 }
 
 export default async function LabsPage() {

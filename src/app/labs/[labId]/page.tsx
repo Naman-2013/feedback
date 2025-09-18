@@ -6,66 +6,30 @@ import Link from 'next/link';
 import MinecraftCard from '@/components/MinecraftCard';
 import { useUser } from '@/context/UserContext';
 
-// This data is hardcoded for the client-side component
-const db = {
-    "labs": [
-        {
-            "labId": "a",
-            "labName": "Lab A - Robotics & AI",
-            "products": [
-                { "id": "a1", "name": "AI Art Generator", "icon": "🎨" },
-                { "id": "a2", "name": "Self-Driving Rover", "icon": "🚗" },
-                { "id": "a3", "name": "Chess Bot", "icon": "♟️" },
-                { "id": "a4", "name": "Automated Gardener", "icon": "🌱" },
-                { "id": "a5", "name": "Voice Assistant", "icon": "💬" },
-                { "id": "a6", "name": "Robotic Arm", "icon": "🦾" },
-                { "id": "a7", "name": "Pathfinding AI", "icon": "🗺️" }
-            ]
-        },
-        {
-            "labId": "b",
-            "labName": "Lab B - VR/AR Experiences",
-            "products": [
-                { "id": "b1", "name": "VR Space Explorer", "icon": "🚀" },
-                { "id": "b2", "name": "AR Furniture Placer", "icon": "🛋️" },
-                { "id": "b3", "name": "Virtual Museum Tour", "icon": "🏛️" },
-                { "id": "b4", "name": "VR Fitness Game", "icon": "💪" },
-                { "id": "b5", "name": "Augmented Reality Art", "icon": "🖼️" },
-                { "id": "b6", "name": "Shared VR Workspace", "icon": "🤝" },
-                { "id": "b7", "name": "VR Escape Room", "icon": "🧩" }
-            ]
-        },
-        {
-            "labId": "c",
-            "labName": "Lab C - IoT & Smart Devices",
-            "products": [
-                { "id": "c1", "name": "Smart Home Hub", "icon": "💡" },
-                { "id": "c2", "name": "Weather Station", "icon": "🌦️" },
-                { "id": "c3", "name": "Pet Feeder", "icon": "🐾" },
-                { "id": "c4", "name": "Smart Security Cam", "icon": "📹" },
-                { "id": "c5", "name": "Health Monitor", "icon": "❤️‍🩹" },
-                { "id": "c6", "name": "Smart Mirror", "icon": "🪞" },
-                { "id": "c7", "name": "Connected Bike Lock", "icon": "🚲" }
-            ]
-        },
-        {
-            "labId": "d",
-            "labName": "Lab D - Web & Blockchain",
-            "products": [
-                { "id": "d1", "name": "Decentralized Voting", "icon": "🔗" },
-                { "id": "d2", "name": "NFT Art Marketplace", "icon": "💎" },
-                { "id": "d3", "name": "Real-time Chat App", "icon": "💬" },
-                { "id": "d4", "name": "Supply Chain Tracker", "icon": "⛓️" },
-                { "id": "d5", "name": "Live Polling System", "icon": "📊" },
-                { "id": "d6", "name": "Encrypted File Share", "icon": "📁" },
-                { "id": "d7", "name": "Web Game Engine", "icon": "🎮" }
-            ]
-        }
-    ]
-};
+interface Product {
+    id: string;
+    name: string;
+    icon: string;
+}
 
-function getLabData(labId: string) {
-    return db.labs.find((l) => l.labId === labId);
+interface Lab {
+    labId: string;
+    labName: string;
+    products: Product[];
+}
+
+async function getLabData(labId: string): Promise<Lab | null> {
+    try {
+        const response = await fetch('/api/labs');
+        if (!response.ok) {
+            throw new Error('Failed to fetch labs');
+        }
+        const labs: Lab[] = await response.json();
+        return labs.find((l) => l.labId === labId) || null;
+    } catch (error) {
+        console.error('Error fetching lab data:', error);
+        return null;
+    }
 }
 
 export default function LabProductsPage() {
@@ -73,7 +37,7 @@ export default function LabProductsPage() {
     const { user } = useUser(); // Get the current user
     const labId = params.labId as string;
 
-    const [lab, setLab] = useState<any>(null);
+    const [lab, setLab] = useState<Lab | null>(null);
     const [submittedIds, setSubmittedIds] = useState<string[]>([]);
 
     useEffect(() => {
@@ -86,9 +50,10 @@ export default function LabProductsPage() {
             setSubmittedIds(storedSubmissions);
         }
 
-        // Fetch lab data
-        const data = getLabData(labId);
-        setLab(data);
+        // Fetch lab data from MongoDB
+        getLabData(labId).then((data) => {
+            setLab(data);
+        });
     }, [labId, user]); // Rerun when the labId or user changes
 
     if (!lab) {

@@ -1,24 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Product Feedback System
+
+This is a [Next.js](https://nextjs.org) project for collecting and managing product feedback with MongoDB integration.
+
+## Features
+
+- 🎯 **Lab-based Product Feedback**: Organize products by labs (Robotics & AI, VR/AR, IoT, Web & Blockchain)
+- 💝 **Heart Rating System**: Interactive heart-based rating system
+- 🎮 **Minecraft-themed UI**: Gamified interface with achievements and XP system
+- 📊 **Real-time Feedback Collection**: Submit and view feedback instantly
+- 🗄️ **MongoDB Integration**: Scalable database with proper data models
+
+## Tech Stack
+
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Backend**: Next.js API Routes
+- **Database**: MongoDB with Mongoose ODM
+- **Styling**: CSS Modules, Tailwind CSS
+- **State Management**: React Context API
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Node.js** (v18 or higher)
+2. **MongoDB** (local installation or MongoDB Atlas)
+
+### Installation
+
+1. **Clone and install dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Set up MongoDB**:
+   - Install MongoDB locally or set up MongoDB Atlas
+   - Create a `.env.local` file with your MongoDB connection string:
+     ```bash
+     MONGODB_URI=mongodb://localhost:27017/feedback-app
+     ```
+
+3. **Migrate existing data** (if you have data in `db.json`):
+   ```bash
+   npm run migrate
+   ```
+
+4. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## MongoDB Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+For detailed MongoDB setup instructions, see [MONGODB_SETUP.md](./MONGODB_SETUP.md).
+
+## API Endpoints
+
+- `GET /api/feedback` - Get all feedback entries
+- `POST /api/feedback` - Submit new feedback
+- `GET /api/feedback/[tableId]` - Get feedback for a specific table
+- `GET /api/labs` - Get all labs
+- `POST /api/labs` - Create new lab
 
 ## Learn More
 

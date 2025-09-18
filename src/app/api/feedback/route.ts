@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
-
-const dbPath = path.join(process.cwd(), 'db.json');
+import connectDB from '../../../../lib/mongodb';
+import Feedback from '../../../../models/Feedback';
 
 export async function POST(request: Request) {
   try {
@@ -11,21 +9,38 @@ export async function POST(request: Request) {
     const newFeedback = await request.json();
     console.log('Received feedback:', newFeedback);
 
-    console.log('Reading database file from:', dbPath);
-    const fileData = await fs.readFile(dbPath, 'utf-8');
-    const data = JSON.parse(fileData);
-    console.log('Current data read successfully.');
+    // Connect to MongoDB
+    await connectDB();
+    console.log('Connected to MongoDB');
 
-    data.feedback.push(newFeedback);
-    console.log('New feedback pushed to data array.');
-
-    await fs.writeFile(dbPath, JSON.stringify(data, null, 2));
-    console.log('Successfully wrote updated data to db.json.');
+    // Create new feedback document
+    const feedback = new Feedback(newFeedback);
+    await feedback.save();
+    console.log('Feedback saved to MongoDB successfully.');
 
     return NextResponse.json({ message: 'Feedback submitted successfully!' }, { status: 201 });
   } catch (error) {
     // This will log the detailed error to your server terminal
     console.error('API Route Error:', error);
     return NextResponse.json({ message: 'Error submitting feedback.' }, { status: 500 });
+  }
+}
+
+export async function GET() {
+  try {
+    console.log('API route received a GET request.');
+    
+    // Connect to MongoDB
+    await connectDB();
+    console.log('Connected to MongoDB');
+
+    // Fetch all feedback
+    const feedback = await Feedback.find({}).sort({ timestamp: -1 });
+    console.log(`Retrieved ${feedback.length} feedback entries from MongoDB.`);
+
+    return NextResponse.json(feedback, { status: 200 });
+  } catch (error) {
+    console.error('API Route Error:', error);
+    return NextResponse.json({ message: 'Error fetching feedback.' }, { status: 500 });
   }
 }
